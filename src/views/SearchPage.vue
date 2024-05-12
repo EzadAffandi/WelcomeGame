@@ -11,7 +11,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Home</ion-title>
+        <ion-title>Search</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
