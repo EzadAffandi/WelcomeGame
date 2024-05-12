@@ -2,7 +2,7 @@
     <ion-page>
       <ion-tabs>
         <ion-router-outlet></ion-router-outlet>
-        <ion-tab-bar>
+        <ion-tab-bar style="padding-bottom: 40px">
           <ion-tab-button tab="home" href="/home">
             <ion-icon :icon="mapOutline" />
             <ion-label>Maps</ion-label>
@@ -26,7 +26,7 @@
       </ion-tabs>
     </ion-page>
 </template>
-  
+
   <script>
     import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon } from '@ionic/vue';
   
