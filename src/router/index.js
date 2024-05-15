@@ -13,6 +13,10 @@ const router = createRouter({
       component: () => import('../views/LoginPage.vue'),
     },
     {
+      path: '/admin',
+      component: () => import('../views/AdminPage.vue'),
+    },
+    {
       path: '/',
       component: Tabs,
       children: [
