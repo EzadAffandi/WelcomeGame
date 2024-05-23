@@ -4,9 +4,11 @@
   </ion-app>
 </template>
 <style>
-ion-header{
-  padding-top: 40px;
-  margin-bottom: 20px;
+
+
+ion-page{
+margin-top: constant(safe-area-inset-top);
+margin-top: env(safe-area-inset-top);
 }
 </style>
 <script>

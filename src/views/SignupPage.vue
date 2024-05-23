@@ -17,7 +17,7 @@
       <div class="example-content">
         <ion-toast
           :is-open="wrongCreds"
-          message="Username or password incorrect"
+          message="Service not yet available"
           :duration="5000"
           @didDismiss="setWrong(false)"
         ></ion-toast>
@@ -32,17 +32,32 @@
             </ion-row>
             <ion-row class="ion-justify-content-center">
               <ion-col>
-                <ion-input label="Password" label-placement="floating" fill="outline" type="password" v-model="password"  mode="md"></ion-input>
+                <ion-input label="First name" label-placement="floating" fill="outline" v-model="fname" mode="md"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row class="ion-justify-content-center">
               <ion-col>
-                <ion-button :onclick="login" expand="block">Log in</ion-button>
+                <ion-input label="Last name" label-placement="floating" fill="outline" v-model="lname" mode="md"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col>
+                <ion-input label="Phone number" label-placement="floating" fill="outline" v-model="phone" mode="md"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col>
+                <ion-input label="Password" label-placement="floating" fill="outline" type="password" v-model="password" mode="md"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col>
+                <ion-button :onclick="signup" expand="block">Sign up</ion-button>
               </ion-col>
             </ion-row>
             <ion-row class="ion-justify-content-center" style="margin-top:30px">
               <ion-col class="textcenter">
-                <p :onclick="goToSignup"><u>Don't have an account yet ?</u></p>
+                <p :onclick="goToLogin"><u>Already have an account ?</u></p>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -78,50 +93,22 @@
     data() {
       return {
         username: '',
+        fname: '',
+        lname: '',
+        phone: '',
         password: '',
         wrongCreds: false,
       };
     },
-    async mounted() {
-
-    },
     methods: {
-      login() {
-        const formData = new FormData();
-        formData.append('username', this.username);
-        formData.append('password', this.password);
-
-        this.$axios.post(`${this.$API_URL}/api/login`, formData, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(
-          response => {
-            if(response.status === 200){
-              if(response.data.nouser){
-                this.setWrong(true);
-              } else {
-                this.$store.commit("SET_AUTH", true);
-                this.$store.commit("SET_TOKEN", this.username);
-                this.$store.commit("SET_USER", this.username);
-                this.$router.push('/home');
-              }
-            } else {
-              console.log('error axios');
-            }
-            
-          }
-        ).catch(
-          error => {
-            console.error('Error:', error);
-          }
-        )
+      signup() {
+        this.setWrong(true);
       },
       setWrong(param){
         this.wrongCreds = param;
       },
-      goToSignup(){
-        this.$router.push("/signup");
+      goToLogin(){
+        this.$router.push("/login");
       }
     }
   };

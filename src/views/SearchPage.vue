@@ -9,11 +9,6 @@
 
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Search</ion-title>
-      </ion-toolbar>
-    </ion-header>
     <ion-content>
       <div class="example-content">Search here</div>
     </ion-content>
@@ -21,9 +16,9 @@
 </template>
 
 <script>
-  import { IonHeader, IonToolbar, IonTitle, IonContent, IonPage } from '@ionic/vue';
+  import { IonContent, IonPage } from '@ionic/vue';
 
   export default {
-    components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+    components: { IonContent, IonPage },
   };
 </script>

@@ -1,16 +1,25 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Tabs from '../components/TabsComponent.vue';
+import store from '../main';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/first',
+    },
+    {
+      path: '/first',
+      component: () => import('../views/FirstPage.vue'),
     },
     {
       path: '/login',
       component: () => import('../views/LoginPage.vue'),
+    },
+    {
+      path: '/signup',
+      component: () => import('../views/SignupPage.vue'),
     },
     {
       path: '/admin',
@@ -33,6 +42,10 @@ const router = createRouter({
           component: () => import('../views/FriendsPage.vue'),
         },
         {
+          path: 'forum',
+          component: () => import('../views/ForumPage.vue'),
+        },
+        {
           path: 'profile',
           component: () => import('../views/ProfilePage.vue'),
         },
@@ -44,5 +57,18 @@ const router = createRouter({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const auth = store.getters["auth"];
+  const user = store.getters["user"];
+  if (auth && user || to.path == '/first'|| to.path == '/signup') {
+    next();
+  } else if (to.path !== '/login') {
+    next('/login');
+  } else {
+    next();
+  }
+});
+
 
 export default router
