@@ -53,6 +53,10 @@ const router = createRouter({
           path: 'search',
           component: () => import('../views/SearchPage.vue'),
         },
+        {
+          path: 'game',
+          component: () => import('../views/GamePage.vue'),
+        },
       ],
     },
   ]
