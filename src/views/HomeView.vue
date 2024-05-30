@@ -1,12 +1,9 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Home</ion-title>
-      </ion-toolbar>
-    </ion-header>
     <ion-content>
+
       <div id="map" class="map"></div>
+
     </ion-content>
   </ion-page>
 </template>
@@ -42,6 +39,7 @@ export default defineComponent({
     })
   }
 })
+
 </script>
 
 <style>
