@@ -23,11 +23,6 @@
             <ion-icon :icon="search" />
             <ion-label>Search</ion-label>
           </ion-tab-button>
-
-          <ion-tab-button tab="game" href="/game">
-            <ion-icon :icon="game-controller" />
-            <ion-label>Game</ion-label>
-          </ion-tab-button>
   
           <ion-tab-button tab="profile" href="/profile">
             <ion-icon :icon="personOutline" />
