@@ -30,6 +30,10 @@ const router = createRouter({
       component: () => import('../views/SettingsPage.vue'),
     },
     {
+      path: '/user/:id',
+      component: () => import('../views/UserPage.vue'),
+    },
+    {
       path: '/',
       component: Tabs,
       children: [

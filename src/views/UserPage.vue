@@ -17,15 +17,18 @@
   .profileRecap {
     margin-left: 10px;
   }
-
-  ion-page{
-    margin-top: constant(safe-area-inset-top);
-    margin-top: env(safe-area-inset-top);
-    }
 </style>
 
 <template>
-  <ion-page>
+  <ion-page class="page">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ username }}'s profile</ion-title>
+      </ion-toolbar>
+    </ion-header>
     <ion-content>
     <div class="content">
       <ion-grid>
@@ -36,9 +39,6 @@
           </ion-col>
           <ion-col style="display: flex;" size="auto">
             <ion-icon :icon="checkmarkCircleOutline"/> 
-          </ion-col>
-          <ion-col offset="6" size="1">
-            <ion-icon :onclick="goToSettings" size="large" :icon="settingsOutline"/>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -80,7 +80,10 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="medium">Edit profile</ion-button>
+            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="danger">Unfriend</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="medium">Message</ion-button>
           </ion-col>
         </ion-row>
       </div>
@@ -96,13 +99,16 @@
             IonContent, 
             IonPage,
             IonButton,
-            IonList,
-            IonItem,
             IonGrid, 
             IonRow,
             IonCol,
             IonNote,
             IonIcon,
+            IonHeader,
+            IonBackButton,
+            IonToolbar,
+            IonButtons,
+            IonTitle,
           } from '@ionic/vue';
 
           import { checkmarkCircleOutline, settingsOutline } from 'ionicons/icons';
@@ -112,13 +118,16 @@
                   IonContent, 
                   IonPage,
                   IonButton,
-                  IonList,
-                  IonItem,
                   IonGrid,
                   IonRow,
                   IonCol,
                   IonNote,
-                  IonIcon
+                  IonIcon,
+                  IonHeader,
+                  IonBackButton,
+                  IonToolbar,
+                  IonButtons,
+                  IonTitle
                 },
     mounted() {
       this.admin = this.$store.getters["user"].admin;
