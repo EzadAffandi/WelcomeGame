@@ -1,5 +1,5 @@
 <template>
-    <ion-page>
+    <ion-page class="page">
       <ion-tabs>
         <ion-router-outlet></ion-router-outlet>
         

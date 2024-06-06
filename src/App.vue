@@ -6,9 +6,8 @@
 <style>
 
 
-ion-page{
-margin-top: constant(safe-area-inset-top);
-margin-top: env(safe-area-inset-top);
+.page{
+  margin-top: 30px;
 }
 </style>
 <script>

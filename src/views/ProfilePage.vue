@@ -37,6 +37,9 @@
           <ion-col style="display: flex;" size="auto">
             <ion-icon :icon="checkmarkCircleOutline"/> 
           </ion-col>
+          <ion-col offset="8" size="1">
+            <ion-icon :onclick="goToSettings" size="large" :icon="settingsOutline"/>
+          </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="auto">
@@ -65,42 +68,27 @@
           
         </ion-row>
         <ion-row>
+          <p>{{ firstname }} {{ lastname }}</p>
+        </ion-row>
+        <ion-row>
           <ion-col>
             <ion-note>{{bio}}</ion-note>
           </ion-col>
         </ion-row>
         <ion-row>
+          <p>Promotion {{ promo }}</p>
+        </ion-row>
+        <ion-row>
           <ion-col>
-            <ion-button v-if="!edit" :onclick="triggerEdit" disabled="true">Edit</ion-button>
-            <ion-button v-if="edit" fill="outline" :onclick="triggerEdit">Confirm</ion-button>
+            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="medium">Edit profile</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="medium">Message</ion-button>
           </ion-col>
         </ion-row>
       </div>
       </ion-grid>
       
-      <ion-list>
-        <ion-item>
-          <ion-input label="Username :" :value="username" :readonly="!edit"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="First name : " :value="firstname" :readonly="!edit"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Last name :" :value="lastname" :readonly="!edit"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Promo :" :value="promo" :readonly="!edit"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Phone Number :" :value="phone" :readonly="!edit"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-button expand="block" fill="clear" :onclick="goToAdmin">View your administration progress</ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-button expand="block" color="danger" fill="clear" :onclick="logout">Log out</ion-button>
-        </ion-item>
-      </ion-list>
     </div>
     </ion-content>
   </ion-page>
@@ -113,7 +101,6 @@
             IonButton,
             IonList,
             IonItem,
-            IonInput,
             IonGrid, 
             IonRow,
             IonCol,
@@ -121,7 +108,7 @@
             IonIcon,
           } from '@ionic/vue';
 
-          import { checkmarkCircleOutline } from 'ionicons/icons';
+          import { checkmarkCircleOutline, settingsOutline } from 'ionicons/icons';
 
   export default {
     components: { 
@@ -130,16 +117,19 @@
                   IonButton,
                   IonList,
                   IonItem,
-                  IonInput,
                   IonGrid,
                   IonRow,
                   IonCol,
                   IonNote,
                   IonIcon
                 },
+    mounted() {
+      this.admin = this.$store.getters["user"].admin;
+    },
     data() {
       return {
         checkmarkCircleOutline,
+        settingsOutline,
         username: "user.name",
         firstname: "John",
         lastname: "Doe",
@@ -148,21 +138,17 @@
         promo: "2022",
         friendCount: 10,
         points: 2788,
-        admin: "true",
-        edit: false,
+        admin: "true"
       };
     },
   methods: {
-    goToAdmin(){
-      this.$router.push("/admin")
+    goToSettings(){
+      this.$router.push("/settings")
     },
     triggerEdit(){
       this.edit = !this.edit
     },
-    logout(){
-      this.$store.dispatch("resetUser");
-      this.$router.push("/login")
-    }
+    
   }
   };
 </script>

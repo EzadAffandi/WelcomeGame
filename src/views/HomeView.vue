@@ -1,6 +1,11 @@
 <template>
   <ion-page>
     <ion-content>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button>
+          <ion-icon :icon="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
       <div id="map" class="map"></div>
     </ion-content>
   </ion-page>
@@ -8,21 +13,26 @@
 
 <script>
 
-import { IonContent, IonPage } from '@ionic/vue'
+import { IonContent, IonFab, IonFabButton, IonIcon, IonPage } from '@ionic/vue'
+import { add } from 'ionicons/icons';
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 // import { useGeolocation } from '@vueuse/core'
 
 export default{
-  components: { IonContent, IonPage },
+  components: { IonContent, IonPage, IonFab, IonFabButton, IonIcon },
+  data() {
+    return {
+      add,
+      admin: false,
+    }
+  },
   mounted() {
     // const { coords } = useGeolocation()
-
-      // Default coordinates if geolocation is not supported or available
-      let defaultCoords = [47.633, 6.847]
+    let defaultCoords = [47.633, 6.847]
 
       // Create the map instance with default coordinates
-      let map = L.map('map').setView(defaultCoords, 13)
+      let map = L.map('map').setView(defaultCoords, 16)
       // Add the tile layer to the map
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
@@ -33,8 +43,12 @@ export default{
 
       setTimeout(() => {
         map.invalidateSize()
-    }, 0)
+      }, 10)
+    //Default coordinates if geolocation is not supported or available
+    this.admin = this.$store.getters["user"].admin;
 
+  },
+  methods: {
   }
 }
 
