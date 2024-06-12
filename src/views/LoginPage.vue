@@ -88,10 +88,10 @@
     methods: {
       login() {
         const formData = new FormData();
-        formData.append('username', this.username);
+        formData.append('login', this.username);
         formData.append('password', this.password);
 
-        this.$axios.post(`${this.$API_URL}/api/login`, formData, {
+        this.$axios.post(`${this.$API_URL}/login`, formData, {
           headers: {
             'Content-Type': 'application/json'
           }
