@@ -102,8 +102,9 @@
                 this.setWrong(true);
               } else {
                 this.$store.commit("SET_AUTH", true);
-                this.$store.commit("SET_TOKEN", this.username);
-                this.$store.commit("SET_USER", this.username);
+                this.$store.commit("SET_TOKEN", response.data.token);
+                this.$store.commit("SET_USER", response.data.user);
+                this.$store.commit("SET_ADMIN", response.data.user.isAdmin);
                 this.$router.push('/home');
               }
             } else {

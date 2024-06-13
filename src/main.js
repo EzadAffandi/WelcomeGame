@@ -23,11 +23,13 @@ const store = createStore({
     token: null,
     auth: false,
     user: '',
+    admin: false,
   },
   getters: {
     user: (state) => state.user,
     auth: (state) => state.auth,
     token: (state) => state.token,
+    admin: (state) => state.admin,
   },
   mutations: {
     SET_TOKEN(state, payload) {
@@ -35,6 +37,9 @@ const store = createStore({
     },
     SET_AUTH(state, value) {
       state.auth = value;
+    },
+    SET_ADMIN(state, value) {
+      state.admin = value;
     },
     SET_USER(state, payload) {
       state.user = payload;
@@ -45,6 +50,7 @@ const store = createStore({
       commit("SET_TOKEN", null);
       commit("SET_USER", {});
       commit("SET_AUTH", false);
+      commit("SET_ADMIN", false);
     },
   },
 
