@@ -59,7 +59,7 @@ const store = createStore({
 export default store;
 const app = createApp(App).use(IonicVue).use(router).use(store);
 app.config.globalProperties.$axios = axios;
-app.config.globalProperties.$API_URL = 'http://127.0.0.1:8000/api';
+app.config.globalProperties.$API_URL = 'http://192.168.1.34:8000/api';
 
 router.isReady().then(() => {
   app.mount('#app');

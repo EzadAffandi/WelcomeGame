@@ -37,7 +37,7 @@
           <ion-col style="display: flex;" size="auto">
             <ion-icon :icon="checkmarkCircleOutline"/> 
           </ion-col>
-          <ion-col offset="6" size="1">
+          <ion-col offset="4" size="1">
             <ion-icon :onclick="goToSettings" size="large" :icon="settingsOutline"/>
           </ion-col>
         </ion-row>
@@ -121,7 +121,10 @@
                   IonIcon
                 },
     mounted() {
-      this.admin = this.$store.getters["user"].admin;
+      this.username = this.$store.getters["user"].username;
+      this.firstname = this.$store.getters["user"].first_name;
+      this.lastname = this.$store.getters["user"].last_name;
+      this.admin = this.$store.getters["user"].isAdmin;
     },
     data() {
       return {

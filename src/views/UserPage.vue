@@ -83,7 +83,7 @@
             <ion-button :onclick="triggerEdit" fill="outline" size="small" color="danger">Unfriend</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button :onclick="triggerEdit" fill="outline" size="small" color="medium">Message</ion-button>
+            <ion-button :onclick="sendWhatsapp" fill="outline" size="small" color="medium">Message</ion-button>
           </ion-col>
         </ion-row>
       </div>
@@ -154,6 +154,9 @@
     triggerEdit(){
       this.edit = !this.edit
     },
+    sendWhatsapp(){
+      window.open("https://wa.me/60133308809")
+    } 
     
   }
   };
