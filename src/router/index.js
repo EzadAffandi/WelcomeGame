@@ -26,6 +26,10 @@ const router = createRouter({
       component: () => import('../views/AdminPage.vue'),
     },
     {
+      path: '/eventlist',
+      component: () => import('../views/EventListPage.vue'),
+    },
+    {
       path: '/settings',
       component: () => import('../views/SettingsPage.vue'),
     },

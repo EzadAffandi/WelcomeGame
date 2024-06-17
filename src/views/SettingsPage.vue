@@ -27,6 +27,9 @@
           <ion-button expand="block" fill="clear" :onclick="goToAdmin">View your administration progress</ion-button>
         </ion-item>
         <ion-item>
+          <ion-button expand="block" fill="clear" :onclick="goToEventList">View your events</ion-button>
+        </ion-item>
+        <ion-item>
           <ion-button expand="block" color="danger" fill="clear" :onclick="logout">Log out</ion-button>
         </ion-item>
       </ion-list>
@@ -51,6 +54,7 @@
             IonFab,
             IonFabButton,
             IonIcon,
+            IonButton,
           } from '@ionic/vue';
 
   export default {
@@ -68,6 +72,7 @@
                   IonFab,
                   IonFabButton,
                   IonIcon,
+                  IonButton
                 },
     data() {
       return {
@@ -78,6 +83,9 @@
   methods: {
     goToAdmin(){
       this.$router.push("/admin")
+    },
+    goToEventList(){
+      this.$router.push("/eventlist")
     },
     logout(){
       this.$store.dispatch("resetUser");

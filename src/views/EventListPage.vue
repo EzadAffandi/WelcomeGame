@@ -17,7 +17,7 @@
         <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Admin checklist</ion-title>
+        <ion-title>Your events</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -27,16 +27,26 @@
         </ion-fab-button>
       </ion-fab>
     <div class="content">
-      <h1>Your Checklist</h1>
-      <ion-note>The items listed below are the most common administration processes need to be done by international students and some items might not be related to you</ion-note>
-      <ion-list style="margin-top: 10px;margin-bottom: 10px">
-        <ion-item v-for="(item,index) in listCheck" :key="index">
-          <ion-checkbox :checked="item.check">{{ item.name }}</ion-checkbox>
-        </ion-item>
-      </ion-list>
-      <ion-note>Add your own items to the list are coming soon !</ion-note>
-      <h2>Guide</h2>
-      <ion-note>Here is the list of guides needed so that you can </ion-note>
+      <h1>All events</h1>
+      <div v-if="events.length != 0">
+        <ion-note>This list show all the events that you've joined so far</ion-note>
+        <ion-list style="margin-top:20px">
+          <div v-for="(item,index) in events" :key="index">
+          <ion-item v-if="item.joined">
+            <p>{{ item.title }}</p>
+          </ion-item>
+          </div>
+        </ion-list>
+      </div>
+      <div v-else>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="auto">
+              <p>You haven't joined any event so far. Join one now !</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid> 
+      </div>
     </div>
     </ion-content>
   </ion-page>
@@ -59,6 +69,9 @@
             IonFab,
             IonFabButton,
             IonIcon,
+            IonGrid,
+            IonRow,
+            IonCol,
           } from '@ionic/vue';
 
   export default {
@@ -77,23 +90,43 @@
                   IonFab,
                   IonFabButton,
                   IonIcon,
+                  IonGrid,
+                  IonRow,
+                  IonCol
                 },
     data() {
       return {
         add,
-        listCheck: [{name: "VLS-TS", check: false},{name: "Ameli", check: false},{name: "Assurance Habitation", check: false}]
+        events: []
       };
     },
+  async mounted(){
+    await this.fetchEvents()
+  },
   methods: {
-    goToAdmin(){
-      this.$router.push("/admin")
+    async fetchEvents() {
+      try {
+        const response = await this.$axios.get(`${this.$API_URL}/user/${this.$store.getters["user"].id}/events`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.$store.getters["token"]}`
+          }
+        });
+
+        if (response.status === 200) {
+          if (response.data.nouser) {
+            console.log("hello")
+          } else {
+            this.events = response.data.events;
+            console.log("hello")
+          }
+        } else {
+          console.log('Error: non-200 status code received');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
-    triggerEdit(){
-      this.edit = !this.edit
-    },
-    logout(){
-      this.$router.push("/login")
-    }
   }
   };
 </script>
