@@ -39,7 +39,7 @@
       
       <ion-modal :is-open="isOpenAddEvent" @didDismiss="setOpenAddEvent(false)">
       <ion-header>
-        <ion-toolbar>
+        <ion-toolbar style="padding-top: 30px;">
           <ion-title>Add event</ion-title>
           <ion-buttons slot="end">
             <ion-button @click="setOpenAddEvent(false)">Cancel</ion-button>
@@ -60,10 +60,10 @@
             </ion-row>
             <ion-row class="ion-justify-content-center">
               <ion-col>
-                <ion-input label="Latitude" label-placement="floating" fill="outline" v-model="inputEventLat"  mode="md"></ion-input>
+                <ion-input :disabled="true" label="Latitude" label-placement="floating" fill="outline" v-model="inputEventLat"  mode="md"></ion-input>
               </ion-col>
               <ion-col>
-                <ion-input label="Longitude" label-placement="floating" fill="outline" v-model="inputEventLong"  mode="md"></ion-input>
+                <ion-input :disabled="true" label="Longitude" label-placement="floating" fill="outline" v-model="inputEventLong"  mode="md"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row class="ion-justify-content-center">
@@ -77,7 +77,7 @@
 
     <ion-modal :is-open="isOpenDetailEvent" @didDismiss="setOpenDetailEvent(false)">
       <ion-header>
-        <ion-toolbar>
+        <ion-toolbar style="padding-top: 30px;">
           <ion-title>Event's details</ion-title>
           <ion-buttons slot="end">
             <ion-button @click="setOpenDetailEvent(false)">Close</ion-button>

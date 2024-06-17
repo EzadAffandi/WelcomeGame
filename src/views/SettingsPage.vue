@@ -21,7 +21,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-    <div class="content">
       <ion-list>
         <ion-item>
           <ion-button expand="block" fill="clear" :onclick="goToAdmin">View your administration progress</ion-button>
@@ -33,7 +32,6 @@
           <ion-button expand="block" color="danger" fill="clear" :onclick="logout">Log out</ion-button>
         </ion-item>
       </ion-list>
-    </div>
     </ion-content>
   </ion-page>
 </template>
